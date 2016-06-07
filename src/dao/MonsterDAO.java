@@ -12,16 +12,21 @@ import java.sql.SQLException;
 import java.util.Random;
 import model.Monster;
 
+import javax.jdo.*;
+
 /**
  *
  * @author g14925mm
  */
 public class MonsterDAO {
-    private final String DRIVER_NAME = "org.apache.derby.jdbc.ClientDriver"; //"org.h2.Driver";
+    /*
+	private final String DRIVER_NAME = "org.apache.derby.jdbc.ClientDriver"; //"org.h2.Driver";
     private final String JDBC_URL = "jdbc:derby://localhost:1527/db25541"; // "jdbc:h2:file:C:/data/docoTsubu";
     private final String DB_USER = "db";
     private final String DB_PASS = "db";
-
+     */
+	
+	/*
     public Monster testmonster() {
     	//Monster monster = new Monster();
     	 String name = "monster";
@@ -29,12 +34,18 @@ public class MonsterDAO {
          int hp = 20;
          Monster monster = new Monster(name,atk,hp);
          return monster;
-    }
+    }*/
+	
     public Monster findBymonster() {
         Monster monster = new Monster();
-        Connection conn = null;
+        //Connection conn = null;
+        
+    	PersistenceManagerFactory factory = PMF.get();
+    	PersistenceManager manager = factory.getPersistenceManager();
+    	
         try {
-            Class.forName(DRIVER_NAME);
+            /*
+        	Class.forName(DRIVER_NAME);
             conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
             Random rd = new Random();
             int n = rd.nextInt(3) + 1;
@@ -51,16 +62,20 @@ public class MonsterDAO {
                 monster = new Monster(name,atk,hp);
                 //System.out.println("ATK = "+atk+",HP = "+hp);
             }
+            */
             
-
+        	monster = (Monster) manager.getObjectById(Monster.class, ""); // IDどうする？
+        
+        /*
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return null;
+        */
         } finally {
-            
+            /*
             if (conn != null) {
                 try {
                     conn.close();
@@ -69,6 +84,10 @@ public class MonsterDAO {
                     return null;
                 }
             }
+            */
+        	
+        	manager.close();
+        	
         }
         return monster;
     } 

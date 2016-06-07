@@ -2,7 +2,7 @@ package pairpro7;
 
 import dao.BattleDAO;
 import dao.MonsterDAO;
-import javax.servlet.http.*;
+import javax.servlet.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ public class Pairpro7Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         MonsterDAO dao = new MonsterDAO();
-        Monster monster = dao.testmonster(); 
+        //Monster monster = dao.testmonster(); 
         if(monster == null) {
             response.sendRedirect("");
             response.setContentType("text/plain");
@@ -119,7 +119,7 @@ public class Pairpro7Servlet extends HttpServlet {
                 battle = new Battle(name,text);
                 //dao.create(battle);
                 application.setAttribute("battleList",battleList);
-                battleList = dao.testBattle();     
+                //battleList = dao.testBattle();     
                 request.setAttribute("battleList", battleList);
                 
                 out.print( monster.getName()+"は"+userAtk+"ダメージくらった" );
@@ -129,7 +129,7 @@ public class Pairpro7Servlet extends HttpServlet {
                 battle = new Battle(name,text);
                 //dao.create(battle);
                 application.setAttribute("battleList",battleList);
-                battleList = dao.testBattle();     
+                //battleList = dao.testBattle();     
                 request.setAttribute("battleList", battleList);
            
                 monsterHP = monsterHP- userAtk;
@@ -161,7 +161,7 @@ public class Pairpro7Servlet extends HttpServlet {
                 battle = new Battle(name,text);
                 //dao.create(battle);
                 application.setAttribute("battleList",battleList);
-                battleList = dao.testBattle();     
+                //battleList = dao.testBattle();     
                 request.setAttribute("battleList", battleList);
                 //for(int i = 1;i < battleList.size();i++)
                 //      out.println(battleList.get(i));
@@ -173,7 +173,7 @@ public class Pairpro7Servlet extends HttpServlet {
                 battle = new Battle(name,text);
                 //dao.create(battle);
                 application.setAttribute("battleList",battleList);
-                battleList = dao.testBattle();     
+                //battleList = dao.testBattle();     
                 request.setAttribute("battleList", battleList);
                 //for(int i = 1;i < battleList.size();i++)
                 //out.println(battleList.get(i));
